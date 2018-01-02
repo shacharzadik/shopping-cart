@@ -10,8 +10,17 @@
   "license": "ISC",
   "dependencies": {
     "bootstrap": "^3.3.7",
+    "express": "^4.16.2",
     "font-awesome": "^4.7.0",
     "handlebars": "^4.0.10",
     "jquery": "^3.2.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shacharzadik/shopping-cart.git"
+  },
+  "bugs": {
+    "url": "https://github.com/shacharzadik/shopping-cart/issues"
+  },
+  "homepage": "https://github.com/shacharzadik/shopping-cart#readme"
 }
