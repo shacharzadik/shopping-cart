@@ -9,6 +9,7 @@ var updateCart = function () {
   // Meaning we make sure that all our cart items are displayed in the browser.
   // Remember to empty the "cart div" before you re-add all the item elements.
       $(".cart-list" ).empty();
+      
       var source = $('#cart-template').html();
       var template = Handlebars.compile(source);
       var newHTML = template(cartData);
@@ -35,7 +36,8 @@ var clearCart = function () {
     
     deleteData();
     $(".cart-list" ).empty();
-  
+    $(".total" ).empty();
+    $(".total" ).append(0);
    }
 
 
