@@ -118,3 +118,6 @@ function reduceDuplic() {
 }
 
 reduceDuplic();
+
+
+//  local storage commit
