@@ -22,6 +22,7 @@ var updateCart = function () {
       $('.cart-list').append(newHTML);
       
       $('.total').html(total);
+      reduceDuplic();
 }
 
 
@@ -51,11 +52,14 @@ $('.view-cart').on('click', function () {
   $(".shopping-cart ").toggle();
 });
 
+var itemId=0;
 $('.add-to-cart').on('click', function () {
   // TODO: get the "item" object from the page
+
+  itemId++;
   var itemName = $(this).closest('.item').data().name;
   var itemPrice = $(this).closest('.item').data().price;
-  var item = { text: itemName, price: itemPrice };
+  var item = { text: itemName, price: itemPrice, id: itemId };
   
   addItem(item);
   updateCart();
@@ -68,26 +72,52 @@ $('.clear-cart').on('click', function () {
 // update the cart as soon as the page loads!
 updateCart();
 
+//When a user clicks remove:
+// delete item from array
+// remove from cart
 
-//Add the item + the price to the shopping cart div when you click "Add to Cart"... Use Handlebars.
+// bind dynamically added remove-item button to cart-list
+$('.cart-list').on("click", ".remove-item",getItemId);
 
 
-// // add data to array
-// function addData(postText,num) {
-//   var postsObject = { "text": postText, "id": num };
-//   posts.push(postsObject);
-// };
+//get deleted item id
 
-// // render array 
+function getItemId() {
+  var deletedItemId = $(this).closest('li').data().id;
+  console.log(deletedItemId);
+  deleteItem(deletedItemId);
+}
 
-// function publish() {
-//   $("p").remove();
-//   $(".remove").remove();
-//   for (var i=0; i<posts.length; i++) {
-     
-//       var postText = posts[i].text;
-//       var postId = posts[i].id;
-//       $('.posts').append('<p data-id=' + postId + '>' + postText + '<button type="button" class="remove">  REMOVE  </button>'+ '</p>');
+// search item in the array and delete item from array
+function deleteItem(id) {
+  for (var i=0; i<cartData.cart.length; i++) {
+    if (cartData.cart[i].id == id) {
+      // delete cart[i]
+      cartData.cart.splice(i, 1);
+      updateCart();
+    } 
+  }
+}
 
-//   }
-// }
+
+// var str = "The rain in SPAIN stays mainly in the plain"; 
+// var res = str.match(/ain/g);
+
+var itemCount = 1;
+function reduceDuplic() {
+
+ for (var i=0; i<cartData.cart.length; i++) {
+   for (var j=0; j<cartData.cart.length; j++) {
+        // if cartData.cart[text] match
+    if (cartData.cart[j].text === cartData.cart[j].text) {
+      itemCount++;
+    }
+
+  }
+ }
+}
+
+reduceDuplic();
+
+
+//  local storage commit
